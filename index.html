@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Special Surprise</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #111827, #374151);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+
+        /* Floating Background */
+
+        .circle {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .circle:nth-child(1) {
+            left: 10%;
+            top: 20%;
+        }
+
+        .circle:nth-child(2) {
+            right: 10%;
+            top: 60%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 2s;
+        }
+
+        .circle:nth-child(3) {
+            left: 70%;
+            top: 10%;
+            width: 50px;
+            height: 50px;
+            animation-delay: 1s;
+        }
+
+
+        @keyframes float {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-40px);
+            }
+
+        }
+
+
+        /* Main Box */
+
+        .container {
+            position: relative;
+            z-index: 10;
+
+            width: 430px;
+            max-width: 90%;
+
+            background: white;
+            padding: 45px 35px;
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+
+            animation: boxIn 0.8s ease;
+        }
+
+
+        @keyframes boxIn {
+
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+
+
+        /* Gift */
+
+        .gift {
+            font-size: 75px;
+            margin-bottom: 20px;
+
+            animation: giftBounce 1.5s infinite;
+        }
+
+
+        @keyframes giftBounce {
+
+            0%, 100% {
+                transform: translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+
+        }
+
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+
+        p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+
+        /* Button */
+
+        button {
+            margin-top: 28px;
+
+            padding: 15px 30px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #111827;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        button:hover {
+            transform: translateY(-3px) scale(1.03);
+            background: #374151;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+
+        /* Loading */
+
+        #loading {
+            display: none;
+        }
+
+
+        .loader {
+            width: 55px;
+            height: 55px;
+
+            border: 5px solid #ddd;
+            border-top: 5px solid #111827;
+
+            border-radius: 50%;
+
+            margin: 0 auto 25px;
+
+            animation: spin 1s linear infinite;
+        }
+
+
+        @keyframes spin {
+
+            100% {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* Countdown */
+
+        #countdown {
+            display: none;
+        }
+
+
+        .number {
+            font-size: 80px;
+            font-weight: bold;
+
+            margin: 20px;
+
+            animation: numberAnimation 1s infinite;
+        }
+
+
+        @keyframes numberAnimation {
+
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+
+        }
+
+
+        /* Prank */
+
+        #prank {
+            display: none;
+        }
+
+
+        .laugh {
+            font-size: 80px;
+
+            animation: laugh 0.5s infinite alternate;
+        }
+
+
+        @keyframes laugh {
+
+            from {
+                transform: rotate(-10deg) scale(1);
+            }
+
+            to {
+                transform: rotate(10deg) scale(1.15);
+            }
+
+        }
+
+
+        .gotcha {
+            font-size: 42px;
+            margin: 15px 0;
+        }
+
+
+        /* Confetti */
+
+        .confetti {
+            position: fixed;
+
+            top: -20px;
+
+            font-size: 25px;
+
+            animation: fall 3s linear forwards;
+
+            z-index: 100;
+        }
+
+
+        @keyframes fall {
+
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 500px) {
+
+            .container {
+                padding: 35px 20px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .gift {
+                font-size: 65px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Background -->
+
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+
+
+
+    <!-- Main Container -->
+
+    <div class="container">
+
+
+        <!-- Welcome -->
+
+        <div id="welcome">
+
+            <div class="gift">
+                🎁
+            </div>
+
+            <h1>You Have a Surprise!</h1>
+
+            <p>
+                Congratulations! 🎉
+                <br>
+                You have been selected for
+                a special surprise.
+            </p>
+
+            <button onclick="claimPrize()">
+                🎁 Claim Your Surprise
+            </button>
+
+        </div>
+
+
+
+        <!-- Loading -->
+
+        <div id="loading">
+
+            <div class="loader"></div>
+
+            <h1>Verifying...</h1>
+
+            <p>
+                Please wait while we prepare
+                your surprise...
+            </p>
+
+        </div>
+
+
+
+        <!-- Countdown -->
+
+        <div id="countdown">
+
+            <h1>Get Ready!</h1>
+
+            <p>Your surprise is coming...</p>
+
+            <div class="number" id="number">
+                3
+            </div>
+
+        </div>
+
+
+
+        <!-- Prank -->
+
+        <div id="prank">
+
+            <div class="laugh">
+                😂
+            </div>
+
+            <div class="gotcha">
+                GOTCHA!
+            </div>
+
+            <p>
+                You just got pranked! 😆
+                <br><br>
+
+                তুই ভাবছিলি সত্যিই surprise পাবি? 😂
+                <br>
+
+                পুরোটাই ছিল একটা prank!
+            </p>
+
+            <button onclick="tryAgain()">
+                🔄 Try Again
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+
+
+        /* Claim Button */
+
+        function claimPrize() {
+
+            document.getElementById("welcome").style.display = "none";
+
+            document.getElementById("loading").style.display = "block";
+
+
+            setTimeout(function() {
+
+                document.getElementById("loading").style.display = "none";
+
+                startCountdown();
+
+            }, 3000);
+
+        }
+
+
+
+        /* Countdown */
+
+        function startCountdown() {
+
+            document.getElementById("countdown").style.display = "block";
+
+            let number = 3;
+
+            document.getElementById("number").innerHTML = number;
+
+
+            let timer = setInterval(function() {
+
+                number--;
+
+                if (number > 0) {
+
+                    document.getElementById("number").innerHTML = number;
+
+                }
+
+                else {
+
+                    clearInterval(timer);
+
+                    document.getElementById("countdown").style.display = "none";
+
+                    document.getElementById("prank").style.display = "block";
+
+                    createConfetti();
+
+                }
+
+            }, 1000);
+
+        }
+
+
+
+        /* Confetti */
+
+        function createConfetti() {
+
+            let emojis = ["🎉", "😂", "🎊", "✨", "🤣", "🎁"];
+
+            for (let i = 0; i < 35; i++) {
+
+                let confetti = document.createElement("div");
+
+                confetti.className = "confetti";
+
+                confetti.innerHTML =
+                    emojis[Math.floor(Math.random() * emojis.length)];
+
+                confetti.style.left =
+                    Math.random() * 100 + "%";
+
+                confetti.style.animationDelay =
+                    Math.random() * 2 + "s";
+
+                document.body.appendChild(confetti);
+
+
+                setTimeout(function() {
+
+                    confetti.remove();
+
+                }, 5000);
+
+            }
+
+        }
+
+
+
+        /* Try Again */
+
+        function tryAgain() {
+
+            document.getElementById("prank").style.display = "none";
+
+            document.getElementById("welcome").style.display = "block";
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
