@@ -1,550 +1,965 @@
-<!DOCTYPE html>
-<html>
-
+ <!DOCTYPE html>
+<html lang="bn">
 <head>
-
-    <title>Special Surprise</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #111827, #374151);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-
-        /* Floating Background */
-
-        .circle {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            animation: float 6s infinite ease-in-out;
-        }
-
-        .circle:nth-child(1) {
-            left: 10%;
-            top: 20%;
-        }
-
-        .circle:nth-child(2) {
-            right: 10%;
-            top: 60%;
-            width: 120px;
-            height: 120px;
-            animation-delay: 2s;
-        }
-
-        .circle:nth-child(3) {
-            left: 70%;
-            top: 10%;
-            width: 50px;
-            height: 50px;
-            animation-delay: 1s;
-        }
-
-
-        @keyframes float {
-
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-40px);
-            }
-
-        }
-
-
-        /* Main Box */
-
-        .container {
-            position: relative;
-            z-index: 10;
-
-            width: 430px;
-            max-width: 90%;
-
-            background: white;
-            padding: 45px 35px;
-
-            border-radius: 25px;
-
-            text-align: center;
-
-            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
-
-            animation: boxIn 0.8s ease;
-        }
-
-
-        @keyframes boxIn {
-
-            from {
-                opacity: 0;
-                transform: scale(0.7);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-        }
-
-
-        /* Gift */
-
-        .gift {
-            font-size: 75px;
-            margin-bottom: 20px;
-
-            animation: giftBounce 1.5s infinite;
-        }
-
-
-        @keyframes giftBounce {
-
-            0%, 100% {
-                transform: translateY(0) rotate(0);
-            }
-
-            50% {
-                transform: translateY(-15px) rotate(5deg);
-            }
-
-        }
-
-
-        h1 {
-            font-size: 30px;
-            margin-bottom: 15px;
-        }
-
-
-        p {
-            color: #666;
-            line-height: 1.7;
-        }
-
-
-        /* Button */
-
-        button {
-            margin-top: 28px;
-
-            padding: 15px 30px;
-
-            border: none;
-            border-radius: 10px;
-
-            background: #111827;
-            color: white;
-
-            font-size: 16px;
-            font-weight: bold;
-
-            cursor: pointer;
-
-            transition: 0.3s;
-        }
-
-
-        button:hover {
-            transform: translateY(-3px) scale(1.03);
-            background: #374151;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-
-        /* Loading */
-
-        #loading {
-            display: none;
-        }
-
-
-        .loader {
-            width: 55px;
-            height: 55px;
-
-            border: 5px solid #ddd;
-            border-top: 5px solid #111827;
-
-            border-radius: 50%;
-
-            margin: 0 auto 25px;
-
-            animation: spin 1s linear infinite;
-        }
-
-
-        @keyframes spin {
-
-            100% {
-                transform: rotate(360deg);
-            }
-
-        }
-
-
-        /* Countdown */
-
-        #countdown {
-            display: none;
-        }
-
-
-        .number {
-            font-size: 80px;
-            font-weight: bold;
-
-            margin: 20px;
-
-            animation: numberAnimation 1s infinite;
-        }
-
-
-        @keyframes numberAnimation {
-
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-
-            50% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 0;
-            }
-
-        }
-
-
-        /* Prank */
-
-        #prank {
-            display: none;
-        }
-
-
-        .laugh {
-            font-size: 80px;
-
-            animation: laugh 0.5s infinite alternate;
-        }
-
-
-        @keyframes laugh {
-
-            from {
-                transform: rotate(-10deg) scale(1);
-            }
-
-            to {
-                transform: rotate(10deg) scale(1.15);
-            }
-
-        }
-
-
-        .gotcha {
-            font-size: 42px;
-            margin: 15px 0;
-        }
-
-
-        /* Confetti */
-
-        .confetti {
-            position: fixed;
-
-            top: -20px;
-
-            font-size: 25px;
-
-            animation: fall 3s linear forwards;
-
-            z-index: 100;
-        }
-
-
-        @keyframes fall {
-
-            0% {
-                transform: translateY(0) rotate(0);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(110vh) rotate(720deg);
-                opacity: 0;
-            }
-
-        }
-
-
-        /* Mobile */
-
-        @media (max-width: 500px) {
-
-            .container {
-                padding: 35px 20px;
-            }
-
-            h1 {
-                font-size: 25px;
-            }
-
-            .gift {
-                font-size: 65px;
-            }
-
-        }
-
-    </style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vondami Zone</title>
+  <style>
+    /* ==========================================
+       GLOBAL STYLES & RESET
+       ========================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f0c20;
+      color: #fff;
+    }
+
+    .screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      overflow: hidden;
+    }
+
+    .screen.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    /* ==========================================
+       SCREEN 1: INTERACTIVE ESCAPING BUTTON
+       ========================================== */
+    #screen1 {
+      background: radial-gradient(circle at center, #2b1055 0%, #7597de 100%);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Floating ambient sparks on screen 1 */
+    .ambient-sparkle {
+      position: absolute;
+      pointer-events: none;
+      animation: floatSparkle 4s infinite linear;
+      opacity: 0.7;
+    }
+
+    @keyframes floatSparkle {
+      0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-100px) rotate(360deg) scale(1.2); opacity: 0; }
+    }
+
+    .funny-btn-wrapper {
+      position: absolute;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 10;
+    }
+
+    .funny-btn {
+      background: linear-gradient(135deg, #ff6b8b 0%, #d152b8 50%, #9c27b0 100%);
+      border: 3px solid #ffffff;
+      padding: 16px 36px;
+      border-radius: 40px 18px 45px 22px; /* Playful irregular shape */
+      box-shadow: 0 10px 25px rgba(255, 105, 139, 0.5), 0 0 20px rgba(209, 82, 184, 0.4);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-4deg);
+      animation: buttonBounce 2.5s ease-in-out infinite;
+      position: relative;
+      outline: none;
+    }
+
+    .funny-btn:hover {
+      box-shadow: 0 15px 30px rgba(255, 105, 139, 0.8), 0 0 30px rgba(209, 82, 184, 0.7);
+    }
+
+    .btn-emoji {
+      font-size: 2.8rem;
+      line-height: 1;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      margin-bottom: 4px;
+      animation: emojiPulse 1.5s infinite ease-in-out;
+    }
+
+    .btn-text {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      white-space: nowrap;
+    }
+
+    /* Hearts around the button */
+    .heart-particle {
+      position: absolute;
+      font-size: 1.2rem;
+      pointer-events: none;
+      animation: heartFloat 2s infinite ease-in-out;
+    }
+
+    .hp1 { top: -15px; left: -10px; animation-delay: 0s; }
+    .hp2 { top: -20px; right: 10px; animation-delay: 0.5s; }
+    .hp3 { bottom: -15px; left: 20px; animation-delay: 1s; }
+    .hp4 { bottom: -10px; right: -10px; animation-delay: 1.5s; }
+
+    @keyframes buttonBounce {
+      0%, 100% { transform: rotate(-4deg) translateY(0) scale(1); }
+      50% { transform: rotate(-2deg) translateY(-8px) scale(1.03); }
+    }
+
+    @keyframes emojiPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15) rotate(5deg); }
+    }
+
+    @keyframes heartFloat {
+      0%, 100% { transform: translateY(0) scale(0.8); opacity: 0.6; }
+      50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
+    }
+
+    /* Button Action Animations */
+    .escape-shake {
+      animation: escapeAnim 0.4s ease-out !important;
+    }
+
+    .squash-press {
+      transform: scale(0.8, 0.6) rotate(0deg) !important;
+      transition: transform 0.15s ease-in !important;
+    }
+
+    @keyframes escapeAnim {
+      0% { transform: scale(1) rotate(0deg); }
+      20% { transform: scale(0.9) rotate(-15deg) translateX(-10px); }
+      40% { transform: scale(1.1) rotate(15deg) translateX(10px); }
+      60% { transform: scale(0.95) rotate(-10deg); }
+      100% { transform: scale(1) rotate(-4deg); }
+    }
+
+    /* ==========================================
+       SCREEN 2: CHARACTER SCENE & RED BUTTON
+       ========================================== */
+    #screen2 {
+      background: linear-gradient(to bottom, #111428 0%, #1a1e38 60%, #0d0f1d 100%);
+      position: relative;
+    }
+
+    .stage {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Center Plain Red Button */
+    .center-red-btn-container {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .plain-red-btn {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(145deg, #ff3b30, #d70015);
+      border-radius: 50%;
+      border: 4px solid #ffffff;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), inset 0 4px 6px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 59, 48, 0.5);
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      position: relative;
+    }
+
+    .plain-red-btn.pressed {
+      transform: scale(0.85) translateY(4px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.8), inset 0 2px 4px rgba(0,0,0,0.6);
+      background: #b00010;
+    }
+
+    .impact-wave {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #ff3b30;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .impact-wave.active {
+      animation: waveExpand 0.5s ease-out forwards;
+    }
+
+    @keyframes waveExpand {
+      0% { transform: scale(0.8); opacity: 1; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    /* FULL-BODY 3D CARTOON CHARACTER STYLES */
+    .character {
+      position: absolute;
+      width: 120px;
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .char-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 4px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin-bottom: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      text-shadow: 0 1px 2px #000;
+      white-space: nowrap;
+    }
+
+    /* 3D Human Avatar Graphics */
+    .char-body-3d {
+      width: 100%;
+      height: 180px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Head & Face */
+    .avatar-head {
+      width: 50px;
+      height: 54px;
+      border-radius: 25px 25px 22px 22px;
+      background: #ffdbac;
+      position: relative;
+      box-shadow: inset -3px -3px 6px rgba(0,0,0,0.15), 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 3;
+    }
+
+    .avatar-hair {
+      position: absolute;
+      top: -4px;
+      left: -2px;
+      width: 54px;
+      height: 25px;
+      background: #3d2314;
+      border-radius: 20px 20px 0 0;
+      z-index: 4;
+    }
+
+    .avatar-face {
+      position: absolute;
+      top: 18px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 0 10px;
+    }
+
+    .avatar-eye {
+      width: 8px;
+      height: 8px;
+      background: #222;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .avatar-eye::after {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      width: 3px;
+      height: 3px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    .avatar-smile {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 8px;
+      border-bottom: 3px solid #b33939;
+      border-radius: 0 0 10px 10px;
+    }
+
+    /* Torso & Clothes */
+    .avatar-torso {
+      width: 44px;
+      height: 60px;
+      background: #3498db;
+      border-radius: 12px 12px 6px 6px;
+      margin-top: -2px;
+      position: relative;
+      box-shadow: inset -4px 0 8px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+
+    .avatar-arm {
+      position: absolute;
+      width: 12px;
+      height: 50px;
+      background: #2980b9;
+      border-radius: 6px;
+      top: 2px;
+    }
+
+    .arm-left { left: -10px; transform-origin: top center; transform: rotate(10deg); }
+    .arm-right { right: -10px; transform-origin: top center; transform: rotate(-10deg); }
+
+    .avatar-hand {
+      width: 12px;
+      height: 12px;
+      background: #ffdbac;
+      border-radius: 50%;
+      position: absolute;
+      bottom: -4px;
+    }
+
+    /* Legs & Shoes */
+    .avatar-legs {
+      width: 36px;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+
+    .avatar-leg {
+      width: 15px;
+      height: 100%;
+      background: #34495e;
+      border-radius: 4px;
+      position: relative;
+      transform-origin: top center;
+    }
+
+    .avatar-shoe {
+      position: absolute;
+      bottom: -6px;
+      width: 20px;
+      height: 12px;
+      background: #111;
+      border-radius: 6px 8px 4px 4px;
+      box-shadow: 0 3px 5px rgba(0,0,0,0.4);
+    }
+
+    .shoe-left { left: -3px; }
+    .shoe-right { right: -3px; }
+
+    /* --- CHARACTER DISTINCT DESIGNS --- */
+
+    /* Noyon: Blue shirt, Cool Spiky Hair */
+    #char-noyon .avatar-hair {
+      background: #111;
+      border-radius: 10px 25px 0 0;
+      height: 28px;
+    }
+    #char-noyon .avatar-torso { background: #3498db; }
+    #char-noyon .avatar-arm { background: #2980b9; }
+
+    /* Saju: Orange Shirt, Brown Curly Hair */
+    #char-saju .avatar-hair {
+      background: #5c3a21;
+      border-radius: 25px 25px 5px 5px;
+      height: 27px;
+    }
+    #char-saju .avatar-torso { background: #e67e22; }
+    #char-saju .avatar-arm { background: #d35400; }
+
+    /* Afrin: Female - Pink Top, Long Dark Hair, Skirt */
+    #char-afrin .avatar-head { background: #ffe0bd; }
+    #char-afrin .avatar-hair {
+      background: #2c1a1d;
+      height: 55px;
+      width: 58px;
+      left: -4px;
+      border-radius: 25px 25px 15px 15px;
+    }
+    #char-afrin .avatar-torso {
+      background: #e91e63;
+      border-radius: 12px 12px 18px 18px;
+    }
+    #char-afrin .avatar-arm { background: #c2185b; }
+    #char-afrin .avatar-legs .avatar-leg { background: #ffe0bd; }
+    #char-afrin .avatar-shoe { background: #e91e63; }
+
+    /* Boss: Senior Look, Suit/Tie, Glasses, Beard, Grey Hair */
+    #char-boss .avatar-head { background: #f1c27d; }
+    #char-boss .avatar-hair {
+      background: #7f8c8d;
+      height: 22px;
+    }
+    #char-boss .avatar-face::before {
+      /* Glasses */
+      content: '👓';
+      position: absolute;
+      top: -6px;
+      font-size: 18px;
+      left: 12px;
+    }
+    #char-boss .avatar-smile {
+      /* Mustache/Beard */
+      border-bottom: 4px solid #4a4a4a;
+    }
+    #char-boss .avatar-torso {
+      background: #2c3e50;
+      width: 48px;
+    }
+    #char-boss .avatar-torso::after {
+      /* Red Tie */
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 21px;
+      width: 6px;
+      height: 35px;
+      background: #e74c3c;
+      clip-path: polygon(0 0, 100% 0, 80% 100%, 50% 85%, 20% 100%);
+    }
+    #char-boss .avatar-arm { background: #1a252f; }
+    #char-boss .avatar-shoe { background: #000; width: 22px; }
+
+    /* --- ENTRANCE ANIMATIONS (SLOW 2.8s) --- */
+
+    /* Noyon: Enters from LEFT with funny bounce */
+    .enter-left {
+      animation: enterFromLeft 2.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes enterFromLeft {
+      0% { left: -150px; top: 30%; opacity: 0; transform: rotate(-10deg); }
+      30% { transform: rotate(10deg) translateY(-20px); }
+      60% { transform: rotate(-5deg) translateY(0); }
+      80% { transform: rotate(3deg) translateY(-8px); }
+      100% { left: 22%; top: 30%; opacity: 1; transform: rotate(0deg); }
+    }
+
+    /* Saju: Enters from RIGHT with playful slide */
+    .enter-right {
+      animation: enterFromRight 2.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes enterFromRight {
+      0% { right: -150px; top: 30%; opacity: 0; transform: rotate(15deg); }
+      40% { transform: rotate(-12deg) translateY(-15px); }
+      70% { transform: rotate(6deg) translateY(0); }
+      100% { right: 22%; top: 30%; opacity: 1; transform: rotate(0deg); }
+    }
+
+    /* Afrin: Enters from ABOVE with controlled bounce */
+    .enter-top {
+      animation: enterFromTop 2.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    @keyframes enterFromTop {
+      0% { top: -200px; left: 50%; transform: translateX(-50%) scale(0.8); opacity: 0; }
+      60% { top: 12%; transform: translateX(-50%) scale(1.1); }
+      80% { top: 8%; transform: translateX(-50%) scale(0.95); }
+      100% { top: 10%; left: 50%; transform: translateX(-50%) scale(1); opacity: 1; }
+    }
+
+    /* Boss: Enters LAST from BELOW with confident senior walk */
+    .enter-bottom {
+      animation: enterFromBottom 2.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes enterFromBottom {
+      0% { bottom: -220px; left: 50%; transform: translateX(-50%); opacity: 0; }
+      40% { transform: translateX(-52%) rotate(-3deg); }
+      70% { transform: translateX(-48%) rotate(3deg); }
+      100% { bottom: 12%; left: 50%; transform: translateX(-50%); opacity: 1; }
+    }
+
+    /* Foot Pressing Specific Animation Sequence */
+    .boss-walk-to-btn {
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      bottom: 25% !important; /* Move closer to red button */
+    }
+
+    .boss-raise-foot .leg-right {
+      transform: rotate(-65deg) translateY(-8px) !important;
+      transition: transform 0.4s ease-out;
+    }
+
+    .boss-press-foot .leg-right {
+      transform: rotate(-25deg) translateY(12px) scaleY(1.1) !important;
+      transition: transform 0.2s ease-in;
+    }
+
+    /* Walking Legs Animation during entry */
+    .walking .leg-left { animation: legMove 0.5s infinite alternate ease-in-out; }
+    .walking .leg-right { animation: legMove 0.5s infinite alternate-reverse ease-in-out; }
+
+    @keyframes legMove {
+      0% { transform: rotate(-18deg); }
+      100% { transform: rotate(18deg); }
+    }
+
+    /* Screen Shake effect on foot impact */
+    .screen-shake {
+      animation: shakeScreen 0.3s ease-in-out;
+    }
+    @keyframes shakeScreen {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-8px, 6px); }
+      40% { transform: translate(8px, -6px); }
+      60% { transform: translate(-5px, -4px); }
+      80% { transform: translate(5px, 4px); }
+    }
+
+    /* ==========================================
+       SCREEN 3: ALIVE & LIVELY FINAL SCREEN
+       ========================================== */
+    #screen3 {
+      background: radial-gradient(circle at center, #ffffff 0%, #ffdde1 50%, #ee9ca7 100%);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Animated background glow */
+    .alive-glow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,105,180,0.3) 0%, rgba(255,255,255,0) 70%);
+      animation: pulseGlow 3s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.4; transform: scale(0.9); }
+      100% { opacity: 0.9; transform: scale(1.1); }
+    }
+
+    /* Floating Emojis Stream */
+    .floating-emoji {
+      position: absolute;
+      font-size: 2.5rem;
+      pointer-events: none;
+      z-index: 2;
+      animation: floatEmoji 5s infinite ease-in-out;
+    }
+
+    @keyframes floatEmoji {
+      0% { transform: translateY(100vh) rotate(0deg) scale(0.5); opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+    }
+
+    /* Title Styling & Entrance */
+    .title-container {
+      z-index: 10;
+      padding: 20px;
+    }
+
+    .main-title {
+      font-size: 4rem;
+      font-weight: 900;
+      background: linear-gradient(45deg, #d81b60, #8e24aa, #ff4081);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 10px 20px rgba(216, 27, 96, 0.2);
+      animation: titleEntrance 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, floatTitle 3s infinite ease-in-out 1.2s;
+      opacity: 0;
+    }
+
+    .sub-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #4a148c;
+      margin-top: 20px;
+      opacity: 0;
+      animation: subTitleEntrance 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s forwards;
+    }
+
+    @keyframes titleEntrance {
+      0% { opacity: 0; transform: scale(0.3) translateY(50px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes subTitleEntrance {
+      0% { opacity: 0; transform: scale(0.5) translateY(30px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes floatTitle {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-12px) scale(1.02); }
+    }
+
+    /* Sparkles floating around center */
+    .sparkle-pop {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: popSparkle 1.5s infinite alternate;
+    }
+
+    @keyframes popSparkle {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1.4); opacity: 1; }
+    }
+
+    /* Responsive scaling */
+    @media (max-width: 600px) {
+      .main-title { font-size: 2.5rem; }
+      .sub-title { font-size: 1.5rem; }
+      .funny-btn { padding: 12px 28px; }
+      .btn-text { font-size: 1.4rem; }
+      .btn-emoji { font-size: 2.2rem; }
+    }
+  </style>
 </head>
-
-
 <body>
 
+  <!-- SCREEN 1: INTERACTIVE ESCAPING BUTTON -->
+  <div id="screen1" class="screen active">
+    <!-- Ambient Sparkles -->
+    <div class="ambient-sparkle" style="top:20%; left:15%;">✨</div>
+    <div class="ambient-sparkle" style="top:70%; left:80%;">✨</div>
+    <div class="ambient-sparkle" style="top:30%; left:75%;">💖</div>
+    <div class="ambient-sparkle" style="top:80%; left:20%;">⭐</div>
 
-    <!-- Background -->
+    <div class="funny-btn-wrapper" id="btnWrapper">
+      <button class="funny-btn" id="escapingBtn">
+        <!-- Floating hearts around button -->
+        <span class="heart-particle hp1">💗</span>
+        <span class="heart-particle hp2">✨</span>
+        <span class="heart-particle hp3">🌸</span>
+        <span class="heart-particle hp4">💕</span>
+        
+        <span class="btn-emoji">😂</span>
+        <span class="btn-text">আমাকে চাপ</span>
+      </button>
+    </div>
+  </div>
 
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
+  <!-- SCREEN 2: 4 CHARACTERS + PLAIN RED BUTTON -->
+  <div id="screen2" class="screen">
+    <div class="stage" id="stage">
+      
+      <!-- Center Plain Red Button (Already Present from Start) -->
+      <div class="center-red-btn-container">
+        <div class="impact-wave" id="impactWave"></div>
+        <div class="plain-red-btn" id="plainRedBtn"></div>
+      </div>
 
-
-
-    <!-- Main Container -->
-
-    <div class="container">
-
-
-        <!-- Welcome -->
-
-        <div id="welcome">
-
-            <div class="gift">
-                🎁
+      <!-- Character 1: Noyon (Left) -->
+      <div class="character walking" id="char-noyon">
+        <div class="char-name">Noyon</div>
+        <div class="char-body-3d">
+          <div class="avatar-head">
+            <div class="avatar-hair"></div>
+            <div class="avatar-face">
+              <div class="avatar-eye"></div>
+              <div class="avatar-eye"></div>
             </div>
-
-            <h1>You Have a Surprise!</h1>
-
-            <p>
-                Congratulations! 🎉
-                <br>
-                You have been selected for
-                a special surprise.
-            </p>
-
-            <button onclick="claimPrize()">
-                🎁 Claim Your Surprise
-            </button>
-
+            <div class="avatar-smile"></div>
+          </div>
+          <div class="avatar-torso">
+            <div class="avatar-arm arm-left"><div class="avatar-hand"></div></div>
+            <div class="avatar-arm arm-right"><div class="avatar-hand"></div></div>
+          </div>
+          <div class="avatar-legs">
+            <div class="avatar-leg leg-left"><div class="avatar-shoe shoe-left"></div></div>
+            <div class="avatar-leg leg-right"><div class="avatar-shoe shoe-right"></div></div>
+          </div>
         </div>
+      </div>
 
-
-
-        <!-- Loading -->
-
-        <div id="loading">
-
-            <div class="loader"></div>
-
-            <h1>Verifying...</h1>
-
-            <p>
-                Please wait while we prepare
-                your surprise...
-            </p>
-
-        </div>
-
-
-
-        <!-- Countdown -->
-
-        <div id="countdown">
-
-            <h1>Get Ready!</h1>
-
-            <p>Your surprise is coming...</p>
-
-            <div class="number" id="number">
-                3
+      <!-- Character 2: Saju (Right) -->
+      <div class="character walking" id="char-saju">
+        <div class="char-name">Saju</div>
+        <div class="char-body-3d">
+          <div class="avatar-head">
+            <div class="avatar-hair"></div>
+            <div class="avatar-face">
+              <div class="avatar-eye"></div>
+              <div class="avatar-eye"></div>
             </div>
-
+            <div class="avatar-smile"></div>
+          </div>
+          <div class="avatar-torso">
+            <div class="avatar-arm arm-left"><div class="avatar-hand"></div></div>
+            <div class="avatar-arm arm-right"><div class="avatar-hand"></div></div>
+          </div>
+          <div class="avatar-legs">
+            <div class="avatar-leg leg-left"><div class="avatar-shoe shoe-left"></div></div>
+            <div class="avatar-leg leg-right"><div class="avatar-shoe shoe-right"></div></div>
+          </div>
         </div>
+      </div>
 
-
-
-        <!-- Prank -->
-
-        <div id="prank">
-
-            <div class="laugh">
-                😂
+      <!-- Character 3: Afrin (Top - Female) -->
+      <div class="character walking" id="char-afrin">
+        <div class="char-name">Afrin</div>
+        <div class="char-body-3d">
+          <div class="avatar-head">
+            <div class="avatar-hair"></div>
+            <div class="avatar-face">
+              <div class="avatar-eye"></div>
+              <div class="avatar-eye"></div>
             </div>
-
-            <div class="gotcha">
-                Hlw Bokacoda 
-            </div>
-
-            <p>
-                sagor tui dure cole jaccis,miss korbo 😭
-                <br><br>
-
-                abar kobe dekha hobe re , miss you 😭
-                <br>
-
-                onek onek onek miss you
-            </p>
-
-            <button onclick="tryAgain()">
-                🔄 Try Again
-            </button>
-
+            <div class="avatar-smile"></div>
+          </div>
+          <div class="avatar-torso">
+            <div class="avatar-arm arm-left"><div class="avatar-hand"></div></div>
+            <div class="avatar-arm arm-right"><div class="avatar-hand"></div></div>
+          </div>
+          <div class="avatar-legs">
+            <div class="avatar-leg leg-left"><div class="avatar-shoe shoe-left"></div></div>
+            <div class="avatar-leg leg-right"><div class="avatar-shoe shoe-right"></div></div>
+          </div>
         </div>
+      </div>
 
+      <!-- Character 4: Boss (Bottom - Senior Leader) -->
+      <div class="character walking" id="char-boss">
+        <div class="char-name">Boss</div>
+        <div class="char-body-3d">
+          <div class="avatar-head">
+            <div class="avatar-hair"></div>
+            <div class="avatar-face">
+              <div class="avatar-eye"></div>
+              <div class="avatar-eye"></div>
+            </div>
+            <div class="avatar-smile"></div>
+          </div>
+          <div class="avatar-torso">
+            <div class="avatar-arm arm-left"><div class="avatar-hand"></div></div>
+            <div class="avatar-arm arm-right"><div class="avatar-hand"></div></div>
+          </div>
+          <div class="avatar-legs">
+            <div class="avatar-leg leg-left"><div class="avatar-shoe shoe-left"></div></div>
+            <div class="avatar-leg leg-right" id="bossRightLeg"><div class="avatar-shoe shoe-right"></div></div>
+          </div>
+        </div>
+      </div>
 
     </div>
-
-
-
-    <script>
-
-
-        /* Claim Button */
-
-        function claimPrize() {
-
-            document.getElementById("welcome").style.display = "none";
-
-            document.getElementById("loading").style.display = "block";
-
-
-            setTimeout(function() {
-
-                document.getElementById("loading").style.display = "none";
-
-                startCountdown();
-
-            }, 3000);
-
-        }
-
-
-
-        /* Countdown */
-
-        function startCountdown() {
-
-            document.getElementById("countdown").style.display = "block";
-
-            let number = 3;
-
-            document.getElementById("number").innerHTML = number;
-
-
-            let timer = setInterval(function() {
-
-                number--;
-
-                if (number > 0) {
-
-                    document.getElementById("number").innerHTML = number;
-
-                }
-
-                else {
-
-                    clearInterval(timer);
-
-                    document.getElementById("countdown").style.display = "none";
-
-                    document.getElementById("prank").style.display = "block";
-
-                    createConfetti();
-
-                }
-
-            }, 1000);
-
-        }
-
-
-
-        /* Confetti */
-
-        function createConfetti() {
-
-            let emojis = ["🎉", "😂", "🎊", "✨", "🤣", "🎁"];
-
-            for (let i = 0; i < 35; i++) {
-
-                let confetti = document.createElement("div");
-
-                confetti.className = "confetti";
-
-                confetti.innerHTML =
-                    emojis[Math.floor(Math.random() * emojis.length)];
-
-                confetti.style.left =
-                    Math.random() * 100 + "%";
-
-                confetti.style.animationDelay =
-                    Math.random() * 2 + "s";
-
-                document.body.appendChild(confetti);
-
-
-                setTimeout(function() {
-
-                    confetti.remove();
-
-                }, 5000);
-
-            }
-
-        }
-
-
-
-        /* Try Again */
-
-        function tryAgain() {
-
-            document.getElementById("prank").style.display = "none";
-
-            document.getElementById("welcome").style.display = "block";
-
-        }
-
-
-    </script>
-
-
+  </div>
+
+  <!-- SCREEN 3: ALIVE WELCOME VONDAMI ZONE -->
+  <div id="screen3" class="screen">
+    <div class="alive-glow"></div>
+    
+    <!-- Floating Emojis Container -->
+    <div id="floatingEmojiContainer"></div>
+
+    <div class="title-container">
+      <h1 class="main-title">Welcome Vondami Zone</h1>
+      <p class="sub-title">তাহলে Vondami শুরু করা যাক 😂</p>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================
+       SCREEN 1 LOGIC: 3-CLICK ESCAPING BUTTON
+       ========================================== */
+    let clickCount = 0;
+    const btnWrapper = id('btnWrapper');
+    const escapingBtn = id('escapingBtn');
+
+    // Position center initially
+    resetBtnPosition();
+
+    function resetBtnPosition() {
+      btnWrapper.style.top = '50%';
+      btnWrapper.style.left = '50%';
+      btnWrapper.style.transform = 'translate(-50%, -50%)';
+    }
+
+    escapingBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      clickCount++;
+
+      if (clickCount === 1) {
+        // ESCAPE #1: Jumps to upper-right quadrant + shake
+        triggerButtonEscape('25%', '70%', 'scale(1.1) rotate(12deg)');
+      } else if (clickCount === 2) {
+        // ESCAPE #2: Jumps to lower-left quadrant + different angle
+        triggerButtonEscape('70%', '25%', 'scale(0.9) rotate(-18deg)');
+      } else if (clickCount === 3) {
+        // CLICK #3: Squash/Press down then start scene
+        escapingBtn.classList.add('squash-press');
+        setTimeout(() => {
+          switchScreen('screen1', 'screen2');
+          startCharacterSequence();
+        }, 300);
+      }
+    });
+
+    function triggerButtonEscape(topVal, leftVal, transformVal) {
+      escapingBtn.classList.add('escape-shake');
+      
+      // Move after tiny delay for feel
+      setTimeout(() => {
+        btnWrapper.style.top = topVal;
+        btnWrapper.style.left = leftVal;
+        btnWrapper.style.transform = `translate(-50%, -50%) ${transformVal}`;
+      }, 100);
+
+      setTimeout(() => {
+        escapingBtn.classList.remove('escape-shake');
+      }, 500);
+    }
+
+    /* ==========================================
+       SCREEN 2 LOGIC: SLOW 3D ENTRANCE & FOOT PRESS
+       ========================================== */
+    function startCharacterSequence() {
+      const noyon = id('char-noyon');
+      const saju = id('char-saju');
+      const afrin = id('char-afrin');
+      const boss = id('char-boss');
+
+      // Staggered Slow Entrances (0.8s delays between, 2.8s entrance duration)
+      // 1. Noyon from LEFT
+      setTimeout(() => {
+        noyon.classList.add('enter-left');
+      }, 100);
+
+      // 2. Saju from RIGHT
+      setTimeout(() => {
+        saju.classList.add('enter-right');
+      }, 900);
+
+      // 3. Afrin from TOP
+      setTimeout(() => {
+        afrin.classList.add('enter-top');
+      }, 1700);
+
+      // 4. Boss from BOTTOM
+      setTimeout(() => {
+        boss.classList.add('enter-bottom');
+      }, 2500);
+
+      // Total time for all entrances = 2500ms + 2800ms = 5300ms
+      // Stop walking leg animation after settling + 1s pause
+      setTimeout(() => {
+        document.querySelectorAll('.character').forEach(c => c.classList.remove('walking'));
+        
+        // Pause 1 second, then Boss initiates foot press sequence
+        setTimeout(bossFootPressSequence, 1000);
+      }, 5500);
+    }
+
+    function bossFootPressSequence() {
+      const boss = id('char-boss');
+      const redBtn = id('plainRedBtn');
+      const wave = id('impactWave');
+      const stage = id('stage');
+
+      // 1. Boss notices & walks towards the button
+      boss.classList.add('walking', 'boss-walk-to-btn');
+
+      setTimeout(() => {
+        // Stop walking near button
+        boss.classList.remove('walking');
+
+        // 2. Boss raises right foot
+        setTimeout(() => {
+          boss.classList.add('boss-raise-foot');
+
+          // 3. Boss places foot firmly ON red button
+          setTimeout(() => {
+            boss.classList.remove('boss-raise-foot');
+            boss.classList.add('boss-press-foot');
+
+            // Button Squashes & Screen Shakes
+            redBtn.classList.add('pressed');
+            wave.classList.add('active');
+            stage.classList.add('screen-shake');
+
+            // Hold pressed position briefly, then transition
+            setTimeout(() => {
+              switchScreen('screen2', 'screen3');
+              initAliveFinalScreen();
+            }, 800);
+
+          }, 400); // Foot down timing
+        }, 500); // Raise foot delay
+      }, 1200); // Walk duration
+    }
+
+    /* ==========================================
+       SCREEN 3 LOGIC: ALIVE FINAL SCREEN
+       ========================================== */
+    function initAliveFinalScreen() {
+      const container = id('floatingEmojiContainer');
+      const emojis = ['😂', '🤣', '😜', '😎', '🙈', '🤭', '😆', '🤪', '💗', '✨', '👀', '🎉'];
+
+      // Spawn continuous floating emojis
+      setInterval(() => {
+        const emojiEl = document.createElement('div');
+        emojiEl.className = 'floating-emoji';
+        emojiEl.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        // Random horizontal start & sizing
+        emojiEl.style.left = Math.random() * 90 + 5 + '%';
+        emojiEl.style.fontSize = (Math.random() * 1.5 + 1.8) + 'rem';
+        emojiEl.style.animationDuration = (Math.random() * 3 + 4) + 's';
+
+        container.appendChild(emojiEl);
+
+        // Remove element after animation
+        setTimeout(() => {
+          emojiEl.remove();
+        }, 7000);
+      }, 350);
+    }
+
+    /* Helper functions */
+    function id(elemId) { return document.getElementById(elemId); }
+
+    function switchScreen(fromId, toId) {
+      const fromEl = id(fromId);
+      const toEl = id(toId);
+
+      fromEl.style.opacity = '0';
+      setTimeout(() => {
+        fromEl.classList.remove('active');
+        toEl.classList.add('active');
+        setTimeout(() => {
+          toEl.style.opacity = '1';
+        }, 50);
+      }, 500);
+    }
+  </script>
 </body>
-
 </html>
